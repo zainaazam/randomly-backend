@@ -35,10 +35,12 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://zaina:QYrOBII5ufCQctFu@cluster0.rafi1ia.mongodb.net/randomly?retryWrites=true&w=majority"
+    `mongodb+srv://zaina:QYrOBII5ufCQctFu@cluster0.rafi1ia.mongodb.net/randomly?retryWrites=true&w=majority`
   )
   .then(() => {
     console.log("Connected to database");
-    app.listen(8080);
+    app.listen(process.env.PORT || 8080);
   })
   .catch((err) => console.log(err));
+
+module.exports = app;
