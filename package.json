@@ -1,0 +1,23 @@
+{
+  "name": "randomly-backend",
+  "version": "1.0.0",
+  "description": "A backend for randomly website that is designed to make the decision on behalf of the users (choose from provided choices)!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Zaina Azam Hantouli",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3",
+    "helmet": "^6.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}
