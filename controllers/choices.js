@@ -160,7 +160,7 @@ exports.deleteChoice = (req, res, next) => {
 
 exports.randomChoice = async (req, res, next) => {
   try {
-    const choices = await Choice.find();
+    const choices = await Choice.find({ creator: req.userId });
     const randomId = Math.floor(Math.random() * choices.length - 1) + 1;
     res.status(200).json({
       message: "Fetched random choice successfully.",
