@@ -8,7 +8,9 @@ exports.getChoices = async (req, res, next) => {
   //   let totalItems;
   try {
     const totalItems = await Choice.find().countDocuments();
-    const choices = await Choice.find().populate("creator");
+    const choices = await Choice.find({ creator: req.userId }).populate(
+      "creator"
+    );
     // .skip((currentPage - 1) * perPage)
     // .limit(perPage);
     res.status(200).json({
