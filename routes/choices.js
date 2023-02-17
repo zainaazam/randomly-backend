@@ -15,6 +15,6 @@ router.put("/:choiceId", isAuth, choiceController.updateChoice);
 
 router.delete("/:choiceId", isAuth, choiceController.deleteChoice);
 
-router.get("/random", isAuth, choiceController.randomChoice);
+router.post("/random", isAuth, choiceController.randomChoice);
 
 module.exports = router;
