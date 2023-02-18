@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
+require("dotenv").config();
 
 const choicesRoutes = require("./routes/choices");
 const authRoutes = require("./routes/auth");
@@ -34,9 +35,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect(
-    `mongodb+srv://zaina:QYrOBII5ufCQctFu@cluster0.rafi1ia.mongodb.net/randomly?retryWrites=true&w=majority`
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to database");
     app.listen(process.env.PORT || 8080);
