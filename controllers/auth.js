@@ -14,6 +14,8 @@ exports.signup = (req, res, next) => {
   const email = req.body.email;
   const name = req.body.name;
   const password = req.body.password;
+  let loadedUser;
+
   bcrypt
     .hash(password, 12)
     .then((hashedPw) => {
@@ -22,10 +24,21 @@ exports.signup = (req, res, next) => {
         password: hashedPw,
         name: name,
       });
+      loadedUser = user;
       return user.save();
     })
     .then((result) => {
-      res.status(201).json({ message: "User created!", userId: result._id });
+      const token = jwt.sign(
+        {
+          email: loadedUser.email,
+          userId: loadedUser._id.toString(),
+        },
+        "somesupersecretsecret",
+        { expiresIn: "65d" } // Change it when randomly
+      );
+      res
+        .status(201)
+        .json({ message: "User created!", userId: result._id, token: token });
     })
     .catch((err) => {
       if (!err.statusCode) {
